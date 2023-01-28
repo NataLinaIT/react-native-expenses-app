@@ -9,6 +9,7 @@ const AllExpenses = () => {
   return <ExpensesOutput 
           period="Total"
           expenses={expensesContext.expenses}
+          fallbackText="No registered expenses found"
         />
 }
 

@@ -16,6 +16,7 @@ const ResentExpenses = () => {
   return <ExpensesOutput
             period="Last 7 days"
             expenses={resentExpenses}
+            fallbackText="No expenses registered for the last 7 days"
           />
 }
 
