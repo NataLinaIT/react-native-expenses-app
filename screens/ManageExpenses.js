@@ -3,13 +3,15 @@ import { View, StyleSheet } from 'react-native';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesContext } from '../store/context';
 
+import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 import IconButton from '../UI/IconButton';
-import Button from '../UI/Button';
 
 const ManageExpenses = ({route, navigation}) => {
   const expensesContext = useContext(ExpensesContext);
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
+
+  const selectedExpense = expensesContext.expenses.find(e => e.id === editedExpenseId)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,36 +28,23 @@ const ManageExpenses = ({route, navigation}) => {
     navigation.goBack();
   }
 
-  const confirm = () => {
+  const confirm = (data) => {
     if(isEditing) {
-      expensesContext.updateExpense(
-        editedExpenseId,
-        {
-          description: 'Test update',
-          amount: 12.99,
-          date: new Date()
-        }
-      )
+      expensesContext.updateExpense(editedExpenseId, data)
     } else {
-      expensesContext.addExpense({
-        description: 'Test add',
-        amount: 12.99,
-        date: new Date()
-      })
+      expensesContext.addExpense(data)
     }
     navigation.goBack();
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonsContainer}>
-        <Button style={styles.button} mode='flat' onPress={cancel}>
-          Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirm}>
-          {isEditing? 'Edit' : 'Add'}
-        </Button>
-      </View>
+      <ExpenseForm
+        onCancel={cancel}
+        onSubmit={confirm}
+        submitLabel={isEditing? 'Edit' : 'Add'}
+        initialValue={selectedExpense}
+      />
 
       {isEditing &&
       <View style={styles.delete}>
@@ -80,15 +69,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary800
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8
   },
   delete: {
     marginTop: 16,

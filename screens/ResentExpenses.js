@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ExpensesContext } from '../store/context';
 import { getDateMinusDays } from '../util/date';
 
-import ExpensesOutput from '../components/ExpensesOutput';
+import ExpensesOutput from '../components/ExpensesOutput/ExpensesOutput';
 
 const ResentExpenses = () => {
   const expensesContext = useContext(ExpensesContext);

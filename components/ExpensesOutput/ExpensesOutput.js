@@ -1,8 +1,8 @@
 import { View, StyleSheet, Text } from 'react-native';
-import { GlobalStyles } from '../constants/styles';
+import { GlobalStyles } from '../../constants/styles';
 
-import ExpensesSummary from '../components/ExpensesSummary';
-import ExpensesList from '../components/ExpensesList';
+import ExpensesSummary from './ExpensesSummary';
+import ExpensesList from './ExpensesList';
 
 const ExpensesOutput = ({ expenses, period, fallbackText }) => {
   let content = <Text style={styles.text}>{fallbackText}</Text>
