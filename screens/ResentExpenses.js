@@ -1,6 +1,6 @@
-import {useContext} from 'react';
-import {ExpensesContext} from '../store/context';
-import {getDateMinusDays} from '../util/date';
+import { useContext } from 'react';
+import { ExpensesContext } from '../store/context';
+import { getDateMinusDays } from '../util/date';
 
 import ExpensesOutput from '../components/ExpensesOutput';
 
