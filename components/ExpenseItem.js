@@ -3,12 +3,14 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from '../constants/styles';
 import { getFormattedDate } from '../util/date';
 
-const ExpenseItem = ({description, date, amount}) => {
+const ExpenseItem = ({id, description, date, amount}) => {
   const navigation = useNavigation()
   const formattedDate = getFormattedDate(date);
 
   const press = () => {
-    navigation.navigate('ManageExpenses');
+    navigation.navigate('ManageExpenses', {
+      expenseId: id
+    });
   }
 
   return (
