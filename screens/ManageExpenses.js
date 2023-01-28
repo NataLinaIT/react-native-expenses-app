@@ -15,11 +15,17 @@ const ManageExpenses = ({route, navigation}) => {
     })
   }, [navigation, isEditing]);
 
-  const deleteExpense = () => {}
+  const deleteExpense = () => {
+    navigation.goBack();
+  }
 
-  const cancel = () => {}
+  const cancel = () => {
+    navigation.goBack();
+  }
 
-  const confirm = () => {}
+  const confirm = () => {
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.container}>
